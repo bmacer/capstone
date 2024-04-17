@@ -1,10 +1,14 @@
 import BookingForm from "../components/booking-form.component";
 
-const BookingPage = () => {
+const BookingPage = ({ availableTimes, selectedDate, setSelectedDate }) => {
   return (
     <>
       Booking Page
-      <BookingForm />
+      <BookingForm
+        availableTimes={availableTimes}
+        selectedDate={selectedDate}
+        setSelectedDate={setSelectedDate}
+      />
     </>
   );
 };

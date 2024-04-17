@@ -17,7 +17,7 @@ const INITIAL_FORM = {
 };
 
 // Component
-const BookingForm = () => {
+const BookingForm = ({ selectedDate, setSelectedDate, availableTimes }) => {
   // Initialize state using useReducer
   const [state, dispatch] = useReducer(responseReducer, INITIAL_FORM);
 
@@ -32,6 +32,7 @@ const BookingForm = () => {
         onChange={(e) => {
           console.log(e);
           dispatch({ action: "SET_DATE", payload: e.target.value });
+          setSelectedDate(e.target.value);
         }}
       />
       <label htmlFor="res-time">Choose time</label>
@@ -40,12 +41,15 @@ const BookingForm = () => {
         onChange={(e) => dispatch({ action: "SET_TIME", time: e.target.value })}
         value={state.time}
       >
-        <option>17:00</option>
+        {availableTimes.map((at) => (
+          <option>{at}</option>
+        ))}
+        {/* <option>17:00</option>
         <option>18:00</option>
         <option>19:00</option>
         <option>20:00</option>
         <option>21:00</option>
-        <option>22:00</option>
+        <option>22:00</option> */}
       </select>
       <label htmlFor="guests">Number of guests</label>
       <input type="number" placeholder="1" min="1" max="10" id="guests" />
